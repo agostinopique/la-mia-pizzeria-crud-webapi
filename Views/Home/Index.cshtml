@@ -1,0 +1,20 @@
+﻿@{
+    Layout = "_layout";
+    ViewData["Title"] = "Pizza Home Page";
+}
+
+<div class="text-center">
+    <h1>Welcome to out Pizzeria!</h1>
+    <h3>Our pizzas are all made acording to typical italian recepies and with the best products available</h3>
+
+    <div class="input-group my-4 mx-auto w-50">
+        <input id="pizza-input" type="text" class="form-control" placeholder="Search your pizza" aria-label="Search your pizza" aria-describedby="pizza-search">
+        <button onclick="searchPizza()" class="btn btn-outline-secondary" type="button" id="pizza-search">Search</button>
+    </div>
+    
+    <div class="pizza_container text-center"></div>
+
+    <p><strong>Please login to add and modify your pizzas!</strong></p>
+
+</div>
+ 
