@@ -1,0 +1,67 @@
+﻿@{
+    Layout = "_layout";
+
+}
+<div>
+    <h1>Contact us!</h1>
+    <p>Got any questions or requests? Send us an email through the form down below!</p>
+</div>
+
+<div class="contact_form">
+    <form onsubmit="sendMessage(event)">
+        <div class="mb-3">
+            <label for="emailInput" class="form-label">Email address</label>
+            <input type="email" class="form-control" id="emailInput">
+            <span id="email" class="alert alert-danger d-none"></span>
+        </div>
+        <div class="mb-3">
+            <label for="fullnameInput" class="form-label">Full Name</label>
+            <input type="text" class="form-control" id="fullnameInput">
+            <span id="name" class="d-none"></span>
+
+        </div>
+        <div class="mb-3">
+            <label for="textInput" class="form-label">Insert your message here:</label>
+            <textarea class="form-control" id="textInput"></textarea>
+            <span id="text" class="d-none"></span>
+        </div>
+        <button type="submit" class="btn btn-primary">Send</button>
+    </form>
+</div>
+
+<script type="text/javascript">
+    // Send message from form
+    function sendMessage(e) {
+        e.preventDefault();
+
+        document.querySelector("#email").classList.add("d-none");
+        document.querySelector("#name").classList.add("d-none");
+        document.querySelector("#text").classList.add("d-none");
+
+        axios.post("/api/Messages/Post", {
+            email: document.querySelector("#emailInput").value,
+            name: document.querySelector("#fullnameInput").value,
+            text: document.querySelector("#textInput").value
+        })
+        .then(res => {
+            alert("Your message was sent correctly!");
+            document.querySelector("#emailInput").value = "";
+            document.querySelector("#fullnameInput").value = "";
+            document.querySelector("#textInput").value = "";
+        })
+        .catch(err => {
+            console.log(err.response.data.errors.Name);
+            console.log(err.response.data.errors.Email);
+            console.log(err.response.data.errors.Text);
+
+            document.querySelector("#email").classList.replace("d-none", "d-block");
+            document.querySelector("#email").innerHTML = err.response.data.errors.Email[0];
+
+            document.querySelector("#name").classList.replace("d-none", "d-block");
+            document.querySelector("#name").innerHTML = err.response.data.errors.Name[0];
+
+            document.querySelector("#text").classList.replace("d-none", "d-block");
+            document.querySelector("#text").innerHTML = err.response.data.errors.Text[0];
+        })
+    }
+</script>
