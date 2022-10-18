@@ -33,22 +33,25 @@ namespace la_mia_pizzeria_static.Controllers.Api
             return Ok(pizze.ToList<Pizza>());
         }
 
-
         [HttpGet("{id}")]
         public IActionResult Get(int? id)
         {
-            
-            if(id != null)
-            {
-                Pizza pizza = _db.Pizze.Where(pizza => pizza.Id == id).FirstOrDefault();
-                return Ok(pizza);
-            }
-            else
-            {
-                List<Pizza> pizze = _db.Pizze.ToList();
-                return Ok(pizze);
-            }
+
+            //if (id != null)
+            //{
+            //    Pizza pizza = _db.Pizze.Where(pizza => pizza.Id == id).FirstOrDefault();
+            //    return Ok(pizza);
+            //}
+            //else
+            //{
+            //    List<Pizza> pizze = _db.Pizze.ToList();
+            //    return Ok(pizze);
+            //}
+
+            Pizza pizza = _db.Pizze.Where(pizza => pizza.Id == id).First();
+            return Ok(pizza);
         }
+
     }
 }
  
