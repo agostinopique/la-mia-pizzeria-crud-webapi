@@ -24,7 +24,6 @@
     function deletePizza(id){
         axios.delete("/api/pizzas/DeletePizza/" + id)
         .then(res => {
-            console.log(res);
             searchPizza();
         })
     }
@@ -61,7 +60,7 @@
                                             <p class="card-text"><small class="text-muted">Price: &euro;${pizza.price}</small></p>
                                             <p class="card-text"><small class="text-muted">Category: ${pizza.categoryId}</small></p>
                                             <button onclick="detailPizza(${pizza.id})" class="btn btn-secondary" type="button">Details</button>
-                                            <button onclick="editPizza(${pizza.id})" class="btn btn-secondary" type="button">Edit</button>
+                                            <a class="nav-link text-dark" href="/Home/EditPizza?id=${pizza.id}">Edit</a>
                                             <button onclick="deletePizza(${pizza.id})" class="btn btn-secondary" type="button">Delete</button>
                                           </div>
                                         </div>
@@ -138,7 +137,7 @@
                                     <p class="card-text"><small class="text-muted">Price: &euro;${pizza.price}</small></p>
                                     <p class="card-text"><small class="text-muted">Category: ${pizza.categoryId}</small></p>
                                     <button onclick="detailPizza(${pizza.id})" class="btn btn-secondary" type="button">Details</button>
-                                    <button onclick="editPizza(${pizza.id})" class="btn btn-secondary" type="button">Edit</button>
+                                    <a class="nav-link text-dark" href="/Home/EditPizza?id=${pizza.id}">Edit</a>
                                     <button onclick="deletePizza(${pizza.id})" class="btn btn-secondary" type="button">Delete</button>
                                   </div>
                                 </div>

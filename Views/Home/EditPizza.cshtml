@@ -37,5 +37,14 @@
 </form>
 
 <script type="text/javascript">
-    
+    let pizzaId = window.location.search.split("=")[1];
+
+    // Chiamata di default
+    axios.get("/api/Pizzas/GetPizza/" + pizzaId)
+    .then(res => {
+        console.log(res);
+    })
+    .catch(err => {
+        console.log(err);
+    })
 </script>

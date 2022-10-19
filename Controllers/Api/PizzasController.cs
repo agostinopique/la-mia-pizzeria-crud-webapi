@@ -49,8 +49,16 @@ namespace la_mia_pizzeria_static.Controllers.Api
             }
         }
 
+        [HttpGet("{id}")]
+        public IActionResult GetPizza(int id)
+        {
+            PizzeriaContext _db = new PizzeriaContext();
+            Pizza pizza = _db.Pizze.Find(id);
+            return Ok(pizza);
+        }
+
         [HttpPut("{id}")]
-        public IActionResult EditPizza(int id, [FormBody] Pizza pizza)
+        public IActionResult EditPizza(int id, [FromBody] Pizza pizza)
         {
             if (!ModelState.IsValid)
             {
@@ -58,6 +66,7 @@ namespace la_mia_pizzeria_static.Controllers.Api
             }
             PizzeriaContext _db = new PizzeriaContext();
             Pizza pizzaToUpdate = _db.Pizze.Find(id);
+            return Ok();
         }
 
         [HttpDelete("{id}")]
