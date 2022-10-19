@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace la_mia_pizzeria_static.Controllers
 {
-    [Authorize]
+    [Authorize] 
     public class PizzaController : Controller
     {
 
